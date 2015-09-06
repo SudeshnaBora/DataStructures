@@ -10,7 +10,9 @@ struct node {
 static struct node *head=0;
 static struct node *temp=0;
 static struct node *prev=0;
-void creation()
+
+//Linked list display
+void LinkedListCreation()
 {
     int data,choice=1;
     do{
@@ -35,7 +37,9 @@ void creation()
             break;
     }while(1);
 }
-void display()
+
+
+void LinkedlistDisplay()
 {
     temp=0;
     temp=head;
@@ -45,4 +49,39 @@ void display()
         temp=temp->ptr;
     }
     printf("%d\n",temp->num);
+}
+
+//function to delete nodes from Linked List
+void LinkedListDeletion(int data)
+{
+    prev=temp=head;
+    int flag=0;
+
+    while(temp!=0)
+    {
+        //node is first node
+        if(head->num==data)
+        {
+            temp=head->ptr;
+            head=head->ptr;
+            return;
+        }
+        //node is last node
+        if(temp->num==data && temp->ptr==0)
+        {
+            prev->ptr=0;
+            return;
+        }
+        //node is in the middle
+        if(temp->num==data)
+        {
+            prev->ptr=temp->ptr;
+            prev=temp->ptr;
+            return;
+        }
+        prev=temp;
+        temp=temp->ptr;
+    }
+   printf("No such data\n");
+   return;
 }
